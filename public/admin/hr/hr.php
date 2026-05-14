@@ -3,7 +3,7 @@ session_start();
 
 // Ensure the user is logged in and is HR
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'hr') {
-    header("Location: ../../login.php");
+    header("Location: ../../auth.php");
     exit;
 }
 

@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'employee' || $_SESSION['role'] !== 'it_security') {
-    header("Location: ../../login.php");
+    header("Location: ../../auth.php");
     exit;
 }
 
