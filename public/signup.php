@@ -139,25 +139,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php else: ?>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label class="form-label text-secondary small fw-medium" for="first_name">First Name</label>
+                        <label class="form-label text-secondary small fw-medium" for="first_name">First Name <span class="text-danger">*</span></label>
                         <input type="text" id="first_name" name="first_name" class="form-control bg-dark border-secondary text-light" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="form-label text-secondary small fw-medium" for="last_name">Last Name</label>
+                        <label class="form-label text-secondary small fw-medium" for="last_name">Last Name <span class="text-danger">*</span></label>
                         <input type="text" id="last_name" name="last_name" class="form-control bg-dark border-secondary text-light" required>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-secondary small fw-medium" for="email">Email Address</label>
+                    <label class="form-label text-secondary small fw-medium" for="email">Email Address <span class="text-danger">*</span></label>
                     <input type="email" id="email" name="email" class="form-control bg-dark border-secondary text-light" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-secondary small fw-medium" for="password">Password</label>
+                    <label class="form-label text-secondary small fw-medium" for="password">Password <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <input type="password" id="password" name="password" class="form-control bg-dark border-secondary text-light" required>
                         <button class="btn btn-outline-secondary border-secondary bg-dark text-secondary" type="button" id="togglePassword" style="border-left: none;">
@@ -167,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-secondary small fw-medium" for="role">Role Applying For</label>
+                    <label class="form-label text-secondary small fw-medium" for="role">Role Applying For <span class="text-danger">*</span></label>
                     <select id="role" name="role" class="form-select bg-dark border-secondary text-light" required>
                         <option value="" disabled selected>Select a role...</option>
                         <optgroup label="Admin Roles">
@@ -185,8 +185,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 
                 <div class="mb-4">
-                    <label class="form-label text-secondary small fw-medium" for="application_file">Application Form (PDF, DOC, DOCX)</label>
+                    <label class="form-label text-secondary small fw-medium" for="application_file">Application Form (PDF, DOC, DOCX) <span class="text-danger">*</span></label>
                     <input class="form-control bg-dark border-secondary text-light" type="file" id="application_file" name="application_file" accept=".pdf,.doc,.docx" required>
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input border-secondary" type="checkbox" id="auth_data" name="auth_data" required style="background-color: transparent;">
+                        <label class="form-check-label text-secondary small" for="auth_data">
+                            I authorize VENTO Corporation's Human Resources department to collect, process, and evaluate my personal data for employment purposes in accordance with data privacy regulations. <span class="text-danger">*</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input border-secondary" type="checkbox" id="auth_accuracy" name="auth_accuracy" required style="background-color: transparent;">
+                        <label class="form-check-label text-secondary small" for="auth_accuracy">
+                            I certify that all information provided in this application, including the uploaded documents, is true, accurate, and complete to the best of my knowledge. <span class="text-danger">*</span>
+                        </label>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100 fw-semibold py-2" style="background-color: #4F46E5; border-color: #4F46E5;">
@@ -216,6 +231,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             password.setAttribute('type', type);
             toggleIcon.classList.toggle('bi-eye');
             toggleIcon.classList.toggle('bi-eye-slash');
+        });
+
+        // Form validation
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
         });
     </script>
 </body>
