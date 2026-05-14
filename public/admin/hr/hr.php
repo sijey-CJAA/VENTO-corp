@@ -30,7 +30,7 @@ $emp_pending_count = $emp_pending_stmt->fetchColumn();
 
 $total_pending = $admin_pending_count + $emp_pending_count;
 
-require_once '../../../includes/header.php';
+require_once '../../../includes/adminHeader.php';
 ?>
 
 <div class="dashboard">
@@ -74,5 +74,5 @@ require_once '../../../includes/header.php';
 </div>
 
 <?php
-require_once '../../../includes/footer.php';
+require_once '../../../includes/adminFooter.php';
 ?>

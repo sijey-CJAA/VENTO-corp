@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS employees (
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('stock_holder', 'inventory_clerk', 'it_encoder') NOT NULL,
+    role ENUM('stock_holder', 'inventory_clerk', 'it_encoder', 'it_security') NOT NULL,
     status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
     application_file VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -59,3 +59,15 @@ CREATE TABLE IF NOT EXISTS rejection_history (
     applied_at TIMESTAMP,
     rejected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Insert Default Admins
+INSERT IGNORE INTO admins (first_name, last_name, email, password, role, status) VALUES ('Operations', 'Admin', 'operations_admin@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'operations_admin', 'approved');
+INSERT IGNORE INTO admins (first_name, last_name, email, password, role, status) VALUES ('IT', 'Admin', 'it_admin@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'it_admin', 'approved');
+INSERT IGNORE INTO admins (first_name, last_name, email, password, role, status) VALUES ('Compensation', 'Manager', 'compensation_manager@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'compensation_manager', 'approved');
+INSERT IGNORE INTO admins (first_name, last_name, email, password, role, status) VALUES ('Inventory', 'Admin', 'inventory_admin@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'inventory_admin', 'approved');
+
+-- Insert Default Employees
+INSERT IGNORE INTO employees (first_name, last_name, email, password, role, status) VALUES ('Stock', 'Holder', 'stock_holder@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'stock_holder', 'approved');
+INSERT IGNORE INTO employees (first_name, last_name, email, password, role, status) VALUES ('Inventory', 'Clerk', 'inventory_clerk@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'inventory_clerk', 'approved');
+INSERT IGNORE INTO employees (first_name, last_name, email, password, role, status) VALUES ('IT', 'Encoder', 'it_encoder@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'it_encoder', 'approved');
+INSERT IGNORE INTO employees (first_name, last_name, email, password, role, status) VALUES ('IT', 'Security', 'it_security@gmail.com', '$2y$10$HPrsfJyv/2A0Co6b4cr.DuYg3uHRholweq.4OYUaNDh5avJ7OkDTS', 'it_security', 'approved');

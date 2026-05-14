@@ -27,7 +27,7 @@ $stmt = $pdo->query("
 ");
 $rejected = $stmt->fetchAll();
 
-require_once '../../../includes/header.php';
+require_once '../../../includes/adminHeader.php';
 ?>
 
 <div class="dashboard">
@@ -160,5 +160,5 @@ require_once '../../../includes/header.php';
 </script>
 
 <?php
-require_once '../../../includes/footer.php';
+require_once '../../../includes/adminFooter.php';
 ?>

@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     case 'stock_holder': header("Location: employee/stockHolder/stockHolder.php"); break;
                     case 'inventory_clerk': header("Location: employee/inventoryClerk/inventoryClerk.php"); break;
                     case 'it_encoder': header("Location: employee/itEncoder/itEncoder.php"); break;
+                    case 'it_security': header("Location: employee/itSecurity/itSecurity.php"); break;
                     default: header("Location: employee/employee.php"); break;
                 }
                 exit;

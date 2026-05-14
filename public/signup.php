@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Define which table the role belongs to
     $admin_roles = ['operations_admin', 'it_admin', 'compensation_manager', 'inventory_admin'];
-    $employee_roles = ['stock_holder', 'inventory_clerk', 'it_encoder'];
+    $employee_roles = ['stock_holder', 'inventory_clerk', 'it_encoder', 'it_security'];
     
     $table = '';
     if (in_array($role, $admin_roles)) {
@@ -180,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="stock_holder">Stock Holder</option>
                             <option value="inventory_clerk">Inventory Clerk</option>
                             <option value="it_encoder">IT Encoder</option>
+                            <option value="it_security">IT Security</option>
                         </optgroup>
                     </select>
                 </div>

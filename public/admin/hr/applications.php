@@ -53,7 +53,7 @@ $stmt = $pdo->query("
 ");
 $applicants = $stmt->fetchAll();
 
-require_once '../../../includes/header.php';
+require_once '../../../includes/adminHeader.php';
 ?>
 
 <div class="dashboard">
@@ -132,5 +132,5 @@ require_once '../../../includes/header.php';
 </div>
 
 <?php
-require_once '../../../includes/footer.php';
+require_once '../../../includes/adminFooter.php';
 ?>
