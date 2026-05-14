@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VENTO-corp IT Admin</title>
+    <title>VENTO-corp IT Security</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
@@ -38,6 +38,12 @@
         .font-display-lg { font-family: 'Geist', sans-serif; }
         .font-headline-sm { font-family: 'Geist', sans-serif; font-size: 20px; font-weight: 600; }
         
+        .btn-primary-purple {
+            background: linear-gradient(to right, #9333ea, #7c3aed) !important;
+            color: white !important;
+            border: none !important;
+        }
+
         /* Sidebar Styling */
         .app-sidebar {
             position: fixed;
@@ -97,7 +103,7 @@
             position: fixed;
             top: 0;
             right: 0;
-            left: 72px;
+            left: 85px;
             height: 64px;
             z-index: 1040;
             display: flex;
@@ -119,11 +125,6 @@
             width: 250px;
             transition: all 0.2s;
         }
-        .search-input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 1px var(--primary);
-        }
 
         .icon-btn {
             width: 40px;
@@ -137,14 +138,10 @@
             border: none;
             transition: background 0.2s;
         }
-        .icon-btn:hover {
-            background-color: var(--surface-container-low);
-            color: var(--on-surface);
-        }
 
         /* Main Canvas */
         .app-main {
-            margin-left: 72px;
+            margin-left: 85px;
             margin-top: 64px;
             padding: 24px;
             height: calc(100vh - 64px);
@@ -172,9 +169,6 @@
             .app-main {
                 margin-left: 0;
                 padding: 16px;
-            }
-            .search-input {
-                width: 180px;
             }
         }
         
@@ -207,16 +201,6 @@
             border-radius: 50%;
             filter: blur(120px);
         }
-        .aura-2 {
-            position: absolute;
-            bottom: -10%;
-            left: 5%;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(196, 193, 251, 0.05);
-            border-radius: 50%;
-            filter: blur(100px);
-        }
     </style>
 </head>
 <body>
@@ -225,7 +209,6 @@
     <!-- Visual Polish: Background Aura -->
     <div class="bg-aura">
         <div class="aura-1"></div>
-        <div class="aura-2"></div>
     </div>
 
     <!-- Sidebar -->
@@ -242,35 +225,20 @@
         
         <nav class="flex-grow-1 d-flex flex-column gap-2 px-3 py-4">
             <a href="#" class="sidebar-link">
-                <i class="bi bi-people fs-5"></i>
-                <span class="sidebar-text">HR Management</span>
+                <i class="bi bi-speedometer2 fs-5"></i>
+                <span class="sidebar-text">Dashboard</span>
             </a>
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-diagram-3 fs-5"></i>
-                <span class="sidebar-text">Operations</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-box-seam fs-5"></i>
-                <span class="sidebar-text">Inventory</span>
-            </a>
-            
-            <!-- Active State: IT Administration -->
             <a href="#" class="sidebar-link active">
-                <i class="bi bi-person-fill-lock fs-5"></i>
-                <span class="sidebar-text">IT Administration</span>
+                <i class="bi bi-shield-lock fs-5"></i>
+                <span class="sidebar-text">IT Security</span>
             </a>
-
             <a href="#" class="sidebar-link">
-                <i class="bi bi-wallet2 fs-5"></i>
-                <span class="sidebar-text">Compensation</span>
+                <i class="bi bi-journal-text fs-5"></i>
+                <span class="sidebar-text">Security Logs</span>
             </a>
         </nav>
         
         <div class="d-flex flex-column gap-2 px-3 py-4 border-top" style="border-color: var(--outline-variant) !important;">
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-question-circle fs-5"></i>
-                <span class="sidebar-text">Support</span>
-            </a>
             <a href="/VENTO-corp/public/logout.php" class="sidebar-link text-danger">
                 <i class="bi bi-box-arrow-right fs-5"></i>
                 <span class="sidebar-text">Logout</span>
@@ -284,22 +252,15 @@
             <button class="btn btn-link text-white d-md-none p-0 me-2" onclick="document.querySelector('.app-sidebar').classList.toggle('show')">
                 <i class="bi bi-list fs-3"></i>
             </button>
-            <h1 class="font-headline-sm text-white mb-0 d-none d-lg-block">VENTO Dashboard</h1>
+            <h1 class="font-headline-sm text-white mb-0 d-none d-lg-block">IT Security Center</h1>
             <div class="position-relative">
                 <i class="bi bi-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%); color: var(--on-surface-variant);"></i>
-                <input class="search-input" placeholder="Search resources..." type="text" />
+                <input class="search-input" placeholder="Search security logs..." type="text" />
             </div>
         </div>
         <div class="d-flex align-items-center gap-3">
-            <div class="d-flex align-items-center border-end pe-3 me-1 d-none d-md-flex" style="border-color: var(--outline-variant) !important;">
-                <button class="icon-btn"><i class="bi bi-bell fs-5"></i></button>
-                <button class="icon-btn"><i class="bi bi-clock-history fs-5"></i></button>
-                <button class="icon-btn"><i class="bi bi-chat-left-text fs-5"></i></button>
-            </div>
-            <button class="btn btn-sm text-white border-0 fw-semibold d-none d-xl-block">Help</button>
             <div class="d-flex gap-2">
-                <button class="btn btn-sm d-none d-md-block" style="background-color: var(--surface-container-highest); border: 1px solid var(--outline-variant); color: var(--on-surface); font-size: 13px; font-weight: 600;">System Logs</button>
-                <button class="btn btn-sm text-dark fw-semibold" style="background-color: var(--primary); font-size: 13px;">Manage IT Encoders</button>
+                <button class="btn btn-primary-purple btn-sm px-4 fw-semibold shadow-sm">Generate Security Report</button>
             </div>
             <div class="rounded-circle overflow-hidden border ms-1" style="width: 32px; height: 32px; border-color: var(--outline-variant) !important;">
                 <img alt="User profile" class="w-100 h-100 object-fit-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAORfowAaYs5rUZASLxswT2ExzOzGG7uZivyy7e4P_c0kHaOk_K0Fv6ruT3DZS4PxG-2AR-8mfYYrFOguoLFt08fo5mldcaBB7K29uWhpjEljQ23Rbr3JBdO3VOfkc_XAAsL8h196hq7xLX5v-YSOmbDe511mETCEbXPbhwo70HdIRtOEM6E8p4G6KRm7P1VTrAeW6cHJlQovmZckitsPIBq0zXVDk6HNGFacRZ1H2pm4-YAwU8rgagbdCAhLinH2INJ-zIt3fE3R4" />
