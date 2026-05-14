@@ -27,13 +27,13 @@ $stmt = $pdo->query("
 ");
 $rejected = $stmt->fetchAll();
 
-require_once '../../../includes/adminHeader.php';
+require_once '../../../includes/hrHeader.php';
 ?>
 
 <div class="dashboard">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Employee Directory</h2>
-        <a href="hr.php" class="btn btn-outline-dark">Back to Dashboard</a>
+        <a href="../../logout.php" class="btn btn-outline-danger">Logout</a>
     </div>
 
     <div class="nav-tabs mb-4" id="directoryTabs" role="tablist">

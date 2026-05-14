@@ -30,7 +30,7 @@ $emp_pending_count = $emp_pending_stmt->fetchColumn();
 
 $total_pending = $admin_pending_count + $emp_pending_count;
 
-require_once '../../../includes/adminHeader.php';
+require_once '../../../includes/hrHeader.php';
 ?>
 
 <div class="dashboard">
@@ -64,14 +64,7 @@ require_once '../../../includes/adminHeader.php';
         </div>
     </div>
 
-    <div style="margin-top: 3rem;">
-        <h3>Quick HR Actions</h3>
-        <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
-            <a href="applications.php" class="btn btn-primary-purple px-4 py-2">Review Applications</a>
-            <a href="directory.php" class="btn btn-outline-dark px-4 py-2">Employee Directory</a>
-            <button class="btn btn-outline-dark px-4 py-2">Manage Promotions</button>
-        </div>
-    </div>
+
 </div>
 
 <?php

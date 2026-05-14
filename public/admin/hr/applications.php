@@ -53,13 +53,13 @@ $stmt = $pdo->query("
 ");
 $applicants = $stmt->fetchAll();
 
-require_once '../../../includes/adminHeader.php';
+require_once '../../../includes/hrHeader.php';
 ?>
 
 <div class="dashboard">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Review Applications</h2>
-        <a href="hr.php" class="btn btn-outline-dark">Back to Dashboard</a>
+        <a href="../../logout.php" class="btn btn-outline-danger">Logout</a>
     </div>
     
     <?php if ($msg): ?>
