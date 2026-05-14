@@ -538,7 +538,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                    <input type="password" id="signin_password" name="password" class="form-control" placeholder="••••••••" required>
+                                    <input type="password" id="signin_password" name="password" class="form-control" placeholder="••••••••" style="border-right: none;" required>
+                                    <span class="input-group-text toggle-password" data-target="signin_password" style="border-right: 1px solid #27272a; border-left: none; cursor: pointer;">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </span>
                                 </div>
                             </div>
 
@@ -587,7 +590,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             <div class="mb-3">
                                 <label class="form-label" for="signup_password">Password</label>
-                                <input type="password" id="signup_password" name="password" class="form-control" required>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                    <input type="password" id="signup_password" name="password" class="form-control" style="border-right: none;" required>
+                                    <span class="input-group-text toggle-password" data-target="signup_password" style="border-right: 1px solid #27272a; border-left: none; cursor: pointer;">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -681,6 +690,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 form.classList.add('was-validated');
             }, false);
+        });
+
+        // Password visibility toggle
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const passwordInput = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('bi-eye-slash');
+                    icon.classList.add('bi-eye');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('bi-eye');
+                    icon.classList.add('bi-eye-slash');
+                }
+            });
         });
     </script>
 </body>

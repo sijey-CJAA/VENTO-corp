@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin' || $_SESS
 }
 
 require_once '../../../config/db.php';
-require_once '../../../includes/adminHeader.php';
+require_once '../../../includes/compensationManagerHeader.php';
 ?>
 
 <div class="dashboard">
@@ -22,11 +22,7 @@ require_once '../../../includes/adminHeader.php';
     
     <div class="feature-card text-center mt-4">
         <h4 class="mb-2">Payroll & Compensation</h4>
-        <p class="text-secondary small mb-4">Features for generating payslips and adjusting salaries will go here.</p>
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <button class="btn btn-primary-purple px-4 py-2">Generate Payroll</button>
-            <button class="btn btn-outline-dark px-4 py-2">Review Salary Adjustments</button>
-        </div>
+        <p class="text-secondary small mb-4">Select an option from the sidebar navigation to manage payrolls and salary adjustments.</p>
     </div>
 </div>
 
