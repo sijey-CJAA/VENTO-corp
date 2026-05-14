@@ -39,36 +39,37 @@ require_once '../../../includes/adminHeader.php';
         <a href="../../logout.php" class="btn btn-outline-danger">Logout</a>
     </div>
     
-    <div class="alert alert-info">
-        Welcome back, <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>! You are logged in as the Main HR Admin.
+    <div class="info-box mb-4">
+        <i class="bi bi-info-circle"></i>
+        <span>Welcome back, <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>! You are logged in as the Main HR Admin.</span>
     </div>
     
     <div class="stats-grid mt-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-        <div class="stat-card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3>Total Employees</h3>
-            <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: var(--primary-color);"><?php echo $total_active; ?></p>
-            <p class="small text-muted">Active across all departments</p>
+        <div class="stat-card p-4">
+            <h3 class="h5 text-white mb-2">Total Employees</h3>
+            <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #a855f7;"><?php echo $total_active; ?></p>
+            <p class="small text-muted mb-0">Active across all departments</p>
         </div>
         
-        <div class="stat-card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3>Pending Applications</h3>
+        <div class="stat-card p-4">
+            <h3 class="h5 text-white mb-2">Pending Applications</h3>
             <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #f59e0b;"><?php echo $total_pending; ?></p>
-            <p class="small text-muted">Awaiting review</p>
+            <p class="small text-muted mb-0">Awaiting review</p>
         </div>
         
-        <div class="stat-card" style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3>Promotions Review</h3>
+        <div class="stat-card p-4">
+            <h3 class="h5 text-white mb-2">Promotions Review</h3>
             <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #10b981;">0</p>
-            <p class="small text-muted">Pending approval</p>
+            <p class="small text-muted mb-0">Pending approval</p>
         </div>
     </div>
 
     <div style="margin-top: 3rem;">
         <h3>Quick HR Actions</h3>
         <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
-            <a href="applications.php" class="btn btn-primary px-4 py-2 fw-medium border-0" style="background: #4F46E5; border-radius: 6px;">Review Applications</a>
-            <a href="directory.php" class="btn btn-primary px-4 py-2 fw-medium border-0" style="background: #6366f1; border-radius: 6px;">Employee Directory</a>
-            <button class="btn btn-primary px-4 py-2 fw-medium border-0" style="background: #10b981; border-radius: 6px;">Manage Promotions</button>
+            <a href="applications.php" class="btn btn-primary-purple px-4 py-2">Review Applications</a>
+            <a href="directory.php" class="btn btn-outline-dark px-4 py-2">Employee Directory</a>
+            <button class="btn btn-outline-dark px-4 py-2">Manage Promotions</button>
         </div>
     </div>
 </div>

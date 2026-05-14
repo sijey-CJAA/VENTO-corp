@@ -10,30 +10,108 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #09090b;
+            color: #d4d4d8;
         }
         .sidebar {
-            background-color: #1e1b4b !important;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #18181b !important;
+            border-right: 1px solid #27272a;
         }
         .mobile-navbar {
-            background-color: #1e1b4b !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #18181b !important;
+            border-bottom: 1px solid #27272a;
         }
         .text-gradient {
-            background: linear-gradient(to right, #818cf8, #c084fc);
+            background: linear-gradient(to right, #9333ea, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .card, .stat-card {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            backdrop-filter: blur(10px);
+            background-color: #18181b !important;
+            border: 1px solid #27272a !important;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         }
-        .nav-link { color: #94a3b8; font-weight: 500; padding-left: 1rem; }
-        .nav-link:hover { color: #fff; background: rgba(255,255,255,0.05); border-radius: 6px; }
-        .nav-link.active { background-color: #4F46E5 !important; color: #fff !important; border-radius: 6px; }
+        .nav-link { color: #a1a1aa; font-weight: 500; padding-left: 1rem; }
+        .nav-link:hover { color: #fff; background: #27272a; border-radius: 6px; }
+        .nav-link.active { background: linear-gradient(to right, #9333ea, #7c3aed) !important; color: #fff !important; border-radius: 6px; }
+
+        /* Unified Custom Styles */
+        .text-purple { color: #a855f7 !important; }
+        .btn-primary-purple {
+            background: linear-gradient(to right, #9333ea, #7c3aed) !important;
+            color: white !important;
+            border: none !important;
+            transition: opacity 0.2s;
+        }
+        .btn-primary-purple:hover { opacity: 0.9; }
+        .btn-outline-dark {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            color: #a1a1aa;
+        }
+        .btn-outline-dark:hover { background-color: #27272a; color: white; }
+        .form-control, .form-select {
+            background-color: #09090b;
+            border: 1px solid #27272a;
+            color: #d4d4d8;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #09090b;
+            border-color: #a855f7;
+            color: white;
+            box-shadow: 0 0 0 1px #a855f7;
+        }
+        .table {
+            color: #d4d4d8;
+        }
+        .table-dark {
+            --bs-table-bg: #18181b;
+            --bs-table-border-color: #27272a;
+        }
+        .table-hover tbody tr:hover { color: white; background-color: rgba(168, 85, 247, 0.05); }
+
+        .nav-tabs {
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        .nav-tabs .nav-link {
+            flex: 1;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            padding: 1rem;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+        .nav-tabs .nav-link.active {
+            color: white !important;
+            border-bottom: 2px solid #a855f7 !important;
+            background: transparent !important;
+        }
+        .nav-tabs .nav-link:hover:not(.active) {
+            color: #d4d4d8;
+            background: transparent;
+        }
+
+        .info-box {
+            background-color: #0f0f11;
+            border: 1px solid #27272a;
+            border-radius: 4px;
+            padding: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .info-box i { color: #a855f7; font-size: 1.1rem; }
     </style>
 </head>
 <body>

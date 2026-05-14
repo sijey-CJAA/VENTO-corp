@@ -33,25 +33,21 @@ require_once '../../../includes/adminHeader.php';
 <div class="dashboard">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Employee Directory</h2>
-        <a href="hr.php" class="btn btn-outline-light">Back to Dashboard</a>
+        <a href="hr.php" class="btn btn-outline-dark">Back to Dashboard</a>
     </div>
 
-    <ul class="nav nav-tabs mb-4 border-secondary" id="directoryTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active bg-transparent text-white fw-medium border-0 border-bottom border-primary border-2" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-pane" type="button" role="tab">Active Employees (<?php echo count($active); ?>)</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link bg-transparent text-secondary fw-medium border-0" id="rejected-tab" data-bs-toggle="tab" data-bs-target="#rejected-pane" type="button" role="tab">Rejected Applicants (<?php echo count($rejected); ?>)</button>
-        </li>
-    </ul>
+    <div class="nav-tabs mb-4" id="directoryTabs" role="tablist">
+        <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-pane" type="button" role="tab">Active Employees (<?php echo count($active); ?>)</button>
+        <button class="nav-link" id="rejected-tab" data-bs-toggle="tab" data-bs-target="#rejected-pane" type="button" role="tab">Rejected Applicants (<?php echo count($rejected); ?>)</button>
+    </div>
 
     <div class="tab-content" id="myTabContent">
         <!-- Active Tab -->
         <div class="tab-pane fade show active" id="active-pane" role="tabpanel" tabindex="0">
-            <div class="card p-0 overflow-hidden shadow-sm" style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255, 255, 255, 0.02);">
+            <div class="card p-0 overflow-hidden shadow-sm">
                 <div class="table-responsive">
-                    <table class="table table-dark table-hover mb-0 align-middle bg-transparent">
-                        <thead style="background: rgba(255,255,255,0.03);">
+                    <table class="table table-dark table-hover mb-0 align-middle">
+                        <thead>
                             <tr>
                                 <th class="px-4 py-3 border-secondary font-monospace">ID</th>
                                 <th class="py-3 border-secondary">Name</th>
@@ -95,10 +91,10 @@ require_once '../../../includes/adminHeader.php';
         
         <!-- Rejected Tab -->
         <div class="tab-pane fade" id="rejected-pane" role="tabpanel" tabindex="0">
-            <div class="card p-0 overflow-hidden shadow-sm" style="border: 1px solid rgba(255,255,255,0.05); background: rgba(255, 255, 255, 0.02);">
+            <div class="card p-0 overflow-hidden shadow-sm">
                 <div class="table-responsive">
-                    <table class="table table-dark table-hover mb-0 align-middle bg-transparent">
-                        <thead style="background: rgba(255,255,255,0.03);">
+                    <table class="table table-dark table-hover mb-0 align-middle">
+                        <thead>
                             <tr>
                                 <th class="px-4 py-3 border-secondary font-monospace">ID</th>
                                 <th class="py-3 border-secondary">Name</th>
@@ -140,24 +136,6 @@ require_once '../../../includes/adminHeader.php';
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('#directoryTabs .nav-link');
-        tabs.forEach(tab => {
-            tab.addEventListener('show.bs.tab', function(event) {
-                // Remove active classes from all tabs
-                tabs.forEach(t => {
-                    t.classList.remove('text-white', 'border-bottom', 'border-primary', 'border-2');
-                    t.classList.add('text-secondary');
-                });
-                // Add active classes to newly selected tab
-                event.target.classList.remove('text-secondary');
-                event.target.classList.add('text-white', 'border-bottom', 'border-primary', 'border-2');
-            });
-        });
-    });
-</script>
 
 <?php
 require_once '../../../includes/adminFooter.php';

@@ -21,51 +21,52 @@ require_once '../../../includes/adminHeader.php';
         <h2>Operations Admin Dashboard</h2>
     </div>
     
-    <div class="alert alert-info border-0 shadow-sm" style="background: rgba(59, 130, 246, 0.1); color: #60a5fa;">
-        Welcome, <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>! You are overseeing the operations and managing the Stock Holder employees.
+    <div class="info-box mb-4">
+        <i class="bi bi-info-circle"></i>
+        <span>Welcome, <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>! You are overseeing the operations and managing the Stock Holder employees.</span>
     </div>
     
-    <div class="card p-5 text-center mt-4" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px;">
-        <h4 class="text-white mb-2">Operations Control</h4>
+    <div class="feature-card text-center mt-4">
+        <h4 class="mb-2">Operations Control</h4>
         <p class="text-secondary small mb-4">Features for overseeing warehouse operations and dispatching tasks will go here.</p>
         <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <button class="btn btn-primary px-4 py-2 fw-medium border-0 shadow-sm" style="background: #f59e0b;">Manage Stock Holders</button>
-            <button class="btn btn-primary px-4 py-2 fw-medium border-0 shadow-sm" style="background: #10b981;">View Active Operations</button>
+            <button class="btn btn-primary-purple px-4 py-2">Manage Stock Holders</button>
+            <button class="btn btn-outline-dark px-4 py-2">View Active Operations</button>
         </div>
     </div>
-    <div class="card p-4 mt-4 border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px;">
+    <div class="card p-4 mt-4">
         <h4 class="mb-3 text-white">My Employees (Stock Holders)</h4>
         <div class="table-responsive">
-            <table class="table table-dark table-hover mb-0" style="background: transparent;">
+            <table class="table table-dark table-hover mb-0">
                 <thead>
                     <tr>
-                        <th class="text-secondary" style="border-bottom-color: rgba(255,255,255,0.1);">Name</th>
-                        <th class="text-secondary" style="border-bottom-color: rgba(255,255,255,0.1);">Email</th>
-                        <th class="text-secondary" style="border-bottom-color: rgba(255,255,255,0.1);">Status</th>
-                        <th class="text-secondary" style="border-bottom-color: rgba(255,255,255,0.1);">Date Joined</th>
+                        <th class="text-secondary">Name</th>
+                        <th class="text-secondary">Email</th>
+                        <th class="text-secondary">Status</th>
+                        <th class="text-secondary">Date Joined</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (count($employees) > 0): ?>
                         <?php foreach ($employees as $emp): ?>
                             <tr>
-                                <td style="border-bottom-color: rgba(255,255,255,0.05);"><?php echo htmlspecialchars($emp['first_name'] . ' ' . $emp['last_name']); ?></td>
-                                <td style="border-bottom-color: rgba(255,255,255,0.05);"><?php echo htmlspecialchars($emp['email']); ?></td>
-                                <td style="border-bottom-color: rgba(255,255,255,0.05);">
+                                <td><?php echo htmlspecialchars($emp['first_name'] . ' ' . $emp['last_name']); ?></td>
+                                <td><?php echo htmlspecialchars($emp['email']); ?></td>
+                                <td>
                                     <?php if ($emp['status'] === 'approved'): ?>
-                                        <span class="badge bg-success" style="background-color: #10b981 !important;">Approved</span>
+                                        <span class="badge text-success bg-success bg-opacity-10 border border-success border-opacity-25">Approved</span>
                                     <?php elseif ($emp['status'] === 'pending'): ?>
-                                        <span class="badge text-dark" style="background-color: #f59e0b;">Pending</span>
+                                        <span class="badge text-warning bg-warning bg-opacity-10 border border-warning border-opacity-25">Pending</span>
                                     <?php else: ?>
-                                        <span class="badge bg-danger">Rejected</span>
+                                        <span class="badge text-danger bg-danger bg-opacity-10 border border-danger border-opacity-25">Rejected</span>
                                     <?php endif; ?>
                                 </td>
-                                <td style="border-bottom-color: rgba(255,255,255,0.05);"><?php echo date('M d, Y', strtotime($emp['created_at'])); ?></td>
+                                <td><?php echo date('M d, Y', strtotime($emp['created_at'])); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4" class="text-center text-secondary py-4" style="border-bottom-color: rgba(255,255,255,0.05);">No employees found.</td>
+                            <td colspan="4" class="text-center text-secondary py-4">No employees found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
