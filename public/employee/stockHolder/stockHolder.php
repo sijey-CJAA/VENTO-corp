@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'employee' || $_S
 }
 
 require_once '../../../config/db.php';
-require_once '../../../includes/employeeHeader.php';
+require_once '../../../includes/stockHolderHeader.php';
 ?>
 
 <div class="dashboard">
@@ -20,12 +20,10 @@ require_once '../../../includes/employeeHeader.php';
         <span>Welcome, <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>! Your primary duty is to physically stock supplies and items in the warehouse.</span>
     </div>
     
-    <div class="feature-card text-center mt-4">
-        <h4 class="mb-2">Inventory Loading Area</h4>
-        <p class="text-secondary small mb-4">Features for receiving shipments and shelving stock will be added here.</p>
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <button class="btn btn-primary-purple px-4 py-2">Receive Shipment</button>
-            <button class="btn btn-outline-dark px-4 py-2">Log Shelved Items</button>
+    <div class="feature-card mt-4">
+        <div class="card p-4">
+            <h4 class="mb-3 text-white">Inventory Loading Area</h4>
+            <p class="text-secondary mb-0">Use the navigation menu on the left to receive shipments or log newly shelved items into the system.</p>
         </div>
     </div>
 </div>
