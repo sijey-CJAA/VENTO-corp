@@ -13,7 +13,7 @@ $emp_stmt = $pdo->prepare("SELECT first_name, last_name, email, status, created_
 $emp_stmt->execute();
 $employees = $emp_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-require_once '../../../includes/adminHeader.php';
+require_once '../../../includes/inventoryAdminHeader.php';
 ?>
 
 <div class="dashboard">
@@ -28,11 +28,7 @@ require_once '../../../includes/adminHeader.php';
     
     <div class="feature-card text-center mt-4">
         <h4 class="mb-2">Global Inventory Catalog</h4>
-        <p class="text-secondary small mb-4">Features for adding new product lines and defining supplier shipments will be placed here.</p>
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <button class="btn btn-primary-purple px-4 py-2">Manage Products</button>
-            <button class="btn btn-outline-dark px-4 py-2">Inventory Reports</button>
-        </div>
+        <p class="text-secondary small mb-0">The primary controls for adding new product lines and generating supplier reports have been moved to the top navigation header for easier access.</p>
     </div>
     <div class="card p-4 mt-4">
         <h4 class="mb-3 text-white">My Employees (Inventory Clerks)</h4>
@@ -76,5 +72,5 @@ require_once '../../../includes/adminHeader.php';
 </div>
 
 <?php
-require_once '../../../includes/adminFooter.php';
+require_once '../../../includes/inventoryAdminFooter.php';
 ?>
