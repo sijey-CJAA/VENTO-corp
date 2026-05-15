@@ -155,6 +155,18 @@
                                 Dashboard
                             </a>
                         </li>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'inventory_clerk'): ?>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Update Item Quantities
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Perform Stock Audit
+                            </a>
+                        </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
                 
