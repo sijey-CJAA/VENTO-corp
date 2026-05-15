@@ -22,11 +22,7 @@ require_once '../../../includes/employeeHeader.php';
     
     <div class="feature-card text-center mt-4">
         <h4 class="mb-2">Stock Quantity Management</h4>
-        <p class="text-secondary small mb-4">Features for recounting items and adjusting stock levels will be added here.</p>
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <button class="btn btn-primary-purple px-4 py-2">Update Item Quantities</button>
-            <button class="btn btn-outline-dark px-4 py-2">Perform Stock Audit</button>
-        </div>
+        <p class="text-secondary small mb-0">Features for recounting items and adjusting stock levels will be added here.</p>
     </div>
 </div>
 
