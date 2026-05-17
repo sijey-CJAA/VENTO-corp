@@ -343,9 +343,21 @@
 
             <nav class="flex-grow-1 d-flex flex-column gap-2 px-3 py-4">
                 <div class="sidebar-section-label">Operations</div>
-                <a href="operations.php" class="sidebar-link active">
+                <a href="operations.php" class="sidebar-link <?php echo $current_page == 'operations.php' ? 'active' : ''; ?>">
                     <i class="bi bi-speedometer2 fs-5"></i>
                     <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="employees.php" class="sidebar-link <?php echo $current_page == 'employees.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-people fs-5"></i>
+                    <span class="sidebar-text">Employees</span>
+                </a>
+                <a href="request.php" class="sidebar-link <?php echo $current_page == 'request.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-clipboard-data fs-5"></i>
+                    <span class="sidebar-text">Requests</span>
+                </a>
+                <a href="deliveries.php" class="sidebar-link <?php echo $current_page == 'deliveries.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-truck fs-5"></i>
+                    <span class="sidebar-text">Deliveries</span>
                 </a>
             </nav>
 

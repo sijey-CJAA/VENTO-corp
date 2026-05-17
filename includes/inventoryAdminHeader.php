@@ -307,6 +307,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <i class="bi bi-box-seam fs-5"></i>
                 <span class="sidebar-text">Inventory</span>
             </a>
+            <a href="request.php" class="sidebar-link <?php echo $current_page == 'request.php' ? 'active' : ''; ?>">
+                <i class="bi bi-clipboard-data fs-5"></i>
+                <span class="sidebar-text">Requests</span>
+            </a>
         </nav>
 
         <!-- Bottom -->
