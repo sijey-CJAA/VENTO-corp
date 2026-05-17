@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2026 at 12:13 PM
+-- Generation Time: May 17, 2026 at 05:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -123,7 +123,7 @@ CREATE TABLE `inventory` (
 INSERT INTO `inventory` (`id`, `name`, `quantity`, `updated_at`, `last_verification_image`, `updated_by`) VALUES
 (1, 'SOFA', 0, '2026-05-17 09:36:58', NULL, NULL),
 (2, 'STOOL', 0, '2026-05-17 09:36:58', NULL, NULL),
-(3, 'FOLDING CHAIR', 0, '2026-05-17 09:36:58', NULL, NULL),
+(3, 'FOLDING CHAIR', 20, '2026-05-17 14:00:40', 'verification_3_1779026440.png', 'Inventory '),
 (4, 'ARM CHAIR', 15, '2026-05-17 09:56:30', 'verification_4_1779011790.png', 'Inventory '),
 (5, 'RECLINER', 0, '2026-05-17 09:36:58', NULL, NULL);
 
@@ -143,6 +143,51 @@ CREATE TABLE `rejection_history` (
   `applied_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `rejected_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `id` int(11) NOT NULL,
+  `request_image` varchar(255) NOT NULL,
+  `item_requested` varchar(100) NOT NULL,
+  `requested_by` varchar(100) NOT NULL,
+  `requested_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('Pending','Approved','Rejected','Completed') DEFAULT 'Pending',
+  `handled_by` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`id`, `request_image`, `item_requested`, `requested_by`, `requested_at`, `status`, `handled_by`) VALUES
+(1, 'request_1779024851_6977.png', 'FOLDING CHAIR', 'Inventory ', '2026-05-17 13:34:11', 'Approved', 'Operations ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `assigned_to` varchar(100) NOT NULL,
+  `status` enum('Assigned','In Progress','Delivered') DEFAULT 'Assigned',
+  `assigned_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `completed_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `request_id`, `assigned_to`, `status`, `assigned_at`, `completed_at`) VALUES
+(1, 1, 'Stock Holder', 'Delivered', '2026-05-17 13:48:12', '2026-05-17 14:00:00');
 
 --
 -- Indexes for dumped tables
@@ -182,6 +227,19 @@ ALTER TABLE `rejection_history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_id` (`request_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -214,31 +272,29 @@ ALTER TABLE `inventory`
 --
 ALTER TABLE `rejection_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`id`) ON DELETE CASCADE;
 COMMIT;
-
-
--- Table for Requests
-CREATE TABLE IF NOT EXISTS requests (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    request_image VARCHAR(255) NOT NULL,
-    item_requested VARCHAR(100) NOT NULL,
-    requested_by VARCHAR(100) NOT NULL,
-    requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('Pending', 'Approved', 'Rejected', 'Completed') DEFAULT 'Pending',
-    handled_by VARCHAR(100) DEFAULT NULL
-);
-
-
--- Table for Tasks
-CREATE TABLE IF NOT EXISTS tasks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    request_id INT NOT NULL,
-    assigned_to VARCHAR(100) NOT NULL,
-    status ENUM('Assigned', 'In Progress', 'Delivered') DEFAULT 'Assigned',
-    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    completed_at TIMESTAMP NULL DEFAULT NULL,
-    FOREIGN KEY (request_id) REFERENCES requests(id) ON DELETE CASCADE
-);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
