@@ -158,16 +158,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                 Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="receive_shipment.php" class="nav-link <?php echo $current_page == 'receive_shipment.php' ? 'active' : ''; ?>">
-                                Receive Shipment
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="log_shelved_items.php" class="nav-link <?php echo $current_page == 'log_shelved_items.php' ? 'active' : ''; ?>">
-                                Log Shelved Items
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 

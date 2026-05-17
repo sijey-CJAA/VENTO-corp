@@ -347,24 +347,6 @@
                     <i class="bi bi-speedometer2 fs-5"></i>
                     <span class="sidebar-text">Dashboard</span>
                 </a>
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-people fs-5"></i>
-                    <span class="sidebar-text">Manage Stock Holders</span>
-                </a>
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-activity fs-5"></i>
-                    <span class="sidebar-text">Active Operations</span>
-                </a>
-
-                <div class="sidebar-section-label mt-3">Departments</div>
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-box-seam fs-5"></i>
-                    <span class="sidebar-text">Inventory Flow</span>
-                </a>
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-truck fs-5"></i>
-                    <span class="sidebar-text">Dispatch Queue</span>
-                </a>
             </nav>
 
             <div class="d-flex flex-column gap-2 px-3 py-4 border-top" style="border-color: var(--outline-variant) !important;">

@@ -303,23 +303,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <i class="bi bi-speedometer2 fs-5"></i>
                 <span class="sidebar-text">Dashboard</span>
             </a>
-            <a href="#" class="sidebar-link <?php echo $current_page == 'products.php' ? 'active' : ''; ?>">
+            <a href="inventory.php" class="sidebar-link <?php echo $current_page == 'inventory.php' ? 'active' : ''; ?>">
                 <i class="bi bi-box-seam fs-5"></i>
-                <span class="sidebar-text">Manage Products</span>
-            </a>
-            <a href="#" class="sidebar-link <?php echo $current_page == 'reports.php' ? 'active' : ''; ?>">
-                <i class="bi bi-bar-chart-line fs-5"></i>
-                <span class="sidebar-text">Inventory Reports</span>
-            </a>
-            <a href="#" class="sidebar-link <?php echo $current_page == 'suppliers.php' ? 'active' : ''; ?>">
-                <i class="bi bi-truck fs-5"></i>
-                <span class="sidebar-text">Suppliers</span>
-            </a>
-
-            <div class="sidebar-section-label mt-2">Team</div>
-            <a href="#" class="sidebar-link <?php echo $current_page == 'clerks.php' ? 'active' : ''; ?>">
-                <i class="bi bi-people fs-5"></i>
-                <span class="sidebar-text">Inventory Clerks</span>
+                <span class="sidebar-text">Inventory</span>
             </a>
         </nav>
 

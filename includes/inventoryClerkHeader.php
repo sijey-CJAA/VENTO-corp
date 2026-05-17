@@ -6,10 +6,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VENTO-corp Compensation Manager Dashboard</title>
+    <title>VENTO-corp Inventory Clerk Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -29,11 +30,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .card, .stat-card {
+        .card, .stat-card, .feature-card {
             background-color: #18181b !important;
             border: 1px solid #27272a !important;
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
         }
         .nav-link { color: #a1a1aa; font-weight: 500; padding-left: 1rem; }
         .nav-link:hover { color: #fff; background: #27272a; border-radius: 6px; }
@@ -73,34 +75,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
             --bs-table-border-color: #27272a;
         }
         .table-hover tbody tr:hover { color: white; background-color: rgba(168, 85, 247, 0.05); }
-
-        .nav-tabs {
-            border-bottom: 1px solid #27272a;
-            display: flex;
-            margin-bottom: 2rem;
-        }
-        .nav-tabs .nav-link {
-            flex: 1;
-            color: #a1a1aa;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            padding: 1rem;
-            border: none;
-            background: transparent;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-        }
-        .nav-tabs .nav-link.active {
-            color: white !important;
-            border-bottom: 2px solid #a855f7 !important;
-            background: transparent !important;
-        }
-        .nav-tabs .nav-link:hover:not(.active) {
-            color: #d4d4d8;
-            background: transparent;
-        }
 
         .info-box {
             background-color: #0f0f11;
@@ -151,11 +125,16 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </a>
                 
                 <div class="mb-auto">
-                    <span class="d-block text-secondary small text-uppercase fw-bold mb-3 px-3">Compensation Navigation</span>
+                    <span class="d-block text-secondary small text-uppercase fw-bold mb-3 px-3">Inventory Clerk Navigation</span>
                     <ul class="nav flex-column mb-auto gap-1">
                         <li class="nav-item">
-                            <a href="compensation.php" class="nav-link <?php echo $current_page == 'compensation.php' ? 'active' : ''; ?>">
+                            <a href="inventoryClerk.php" class="nav-link <?php echo $current_page == 'inventoryClerk.php' ? 'active' : ''; ?>">
                                 Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="status.php" class="nav-link <?php echo $current_page == 'status.php' ? 'active' : ''; ?>">
+                                Status Updates
                             </a>
                         </li>
                     </ul>

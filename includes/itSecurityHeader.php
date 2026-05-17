@@ -224,17 +224,9 @@
         </div>
         
         <nav class="flex-grow-1 d-flex flex-column gap-2 px-3 py-4">
-            <a href="#" class="sidebar-link">
+            <a href="#" class="sidebar-link active">
                 <i class="bi bi-speedometer2 fs-5"></i>
                 <span class="sidebar-text">Dashboard</span>
-            </a>
-            <a href="#" class="sidebar-link active">
-                <i class="bi bi-shield-lock fs-5"></i>
-                <span class="sidebar-text">IT Security</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-journal-text fs-5"></i>
-                <span class="sidebar-text">Security Logs</span>
             </a>
         </nav>
         

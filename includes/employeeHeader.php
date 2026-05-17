@@ -203,30 +203,6 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link active">Dashboard</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    Sync Main Database
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    View Data Discrepancies
-                                </a>
-                            </li>
-
-
-                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'inventory_clerk'): ?>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Update Item Quantities
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Perform Stock Audit
-                                    </a>
-                                </li>
-                            <?php endif; ?>
                         </ul>
                     </div>
 

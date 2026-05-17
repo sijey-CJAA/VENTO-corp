@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin' || $_SESS
 require_once '../../../config/db.php';
 
 // Fetch employees under this admin
-$emp_stmt = $pdo->prepare("SELECT first_name, last_name, email, role, status, created_at FROM employees WHERE role IN ('it_encoder', 'it_security')");
+$emp_stmt = $pdo->prepare("SELECT first_name, last_name, email, role, status, created_at FROM employees WHERE role = 'it_security'");
 $emp_stmt->execute();
 $employees = $emp_stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -116,14 +116,11 @@ require_once '../../../includes/itAdminHeader.php';
                 <div class="table-responsive">
                     <?php
                     $it_auditor_count = 0;
-                    $developer_count = 0;
                     foreach ($employees as $emp) {
                         if ($emp['role'] === 'it_security') $it_auditor_count++;
-                        if ($emp['role'] === 'it_encoder') $developer_count++;
                     }
                     
                     $it_auditor_display = str_pad($it_auditor_count, 2, '0', STR_PAD_LEFT);
-                    $developer_display = str_pad($developer_count, 2, '0', STR_PAD_LEFT);
                     ?>
                     <table class="table table-dark table-hover mb-0" style="--bs-table-bg: transparent; --bs-table-border-color: rgba(255,255,255,0.05);">
                         <thead>
@@ -188,31 +185,6 @@ require_once '../../../includes/itAdminHeader.php';
                                 </td>
                             </tr>
 
-                            <!-- Developer -->
-                            <tr>
-                                <td class="px-4 py-4 align-middle border-bottom border-outline-variant">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="rounded d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background-color: rgba(149,141,161,0.1); color: #958da1;">
-                                            <i class="bi bi-terminal fs-6"></i>
-                                        </div>
-                                        <span class="text-white fw-semibold">Developer</span>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-4 align-middle border-bottom border-outline-variant font-data-mono text-secondary" style="font-size: 0.8rem;">
-                                    LEVEL 02 - DB_ACCESS
-                                </td>
-                                <td class="px-4 py-4 align-middle border-bottom border-outline-variant text-secondary small">
-                                    <?php echo $developer_display; ?> Users
-                                </td>
-                                <td class="px-4 py-4 align-middle border-bottom border-outline-variant">
-                                    <span class="d-flex align-items-center gap-2 fw-bold text-uppercase" style="font-size: 0.7rem; color: #ffb784;">
-                                        <div class="rounded-circle" style="width: 6px; height: 6px; background-color: #ffb784;"></div> REVIEW
-                                    </span>
-                                </td>
-                                <td class="px-4 py-4 align-middle border-bottom border-outline-variant text-end">
-                                    <button class="btn btn-sm border-0 text-secondary hover-primary" style="padding: 0;"><i class="bi bi-pencil fs-6"></i></button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
