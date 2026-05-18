@@ -292,6 +292,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <a href="request.php" class="sidebar-link <?php echo $current_page == 'request.php' ? 'active' : ''; ?>">
                 <span class="sidebar-text">Requests</span>
             </a>
+            <a href="requestHistory.php" class="sidebar-link <?php echo $current_page == 'requestHistory.php' ? 'active' : ''; ?>">
+                <span class="sidebar-text">Request History</span>
+            </a>
         </nav>
 
         <!-- Bottom -->

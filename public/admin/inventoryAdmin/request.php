@@ -45,15 +45,17 @@ if (isset($_SESSION['success_msg'])) {
     unset($_SESSION['success_msg']);
 }
 
-// Fetch all existing items for cards
-$inv_stmt = $pdo->prepare("SELECT id, name, quantity, status FROM inventory ORDER BY name ASC");
-$inv_stmt->execute();
-$inventory_items = $inv_stmt->fetchAll(PDO::FETCH_ASSOC);
+// Fetch all existing items for cards safely
+$inventory_items = [];
+try {
+    $inv_stmt = $pdo->prepare("SELECT id, name, quantity, status FROM inventory ORDER BY name ASC");
+    $inv_stmt->execute();
+    $inventory_items = $inv_stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    // Table missing
+}
 
-// Fetch my request history
-$req_stmt = $pdo->prepare("SELECT id, request_image, item_requested, requested_at, status, handled_by FROM requests ORDER BY requested_at DESC");
-$req_stmt->execute();
-$my_requests = $req_stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 require_once '../../../includes/inventoryAdminHeader.php';
 ?>
@@ -83,60 +85,7 @@ require_once '../../../includes/inventoryAdminHeader.php';
         <span>Submit restock requests to the Operations Admin. You can quickly request existing items or create a custom request for new supplies.</span>
     </div>
 
-    <!-- Request History Table -->
-    <div class="card p-4 mb-5">
-        <h4 class="text-white mb-3">Request History</h4>
-        <div class="table-responsive">
-            <table class="table table-dark table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th class="text-secondary" style="width: 5%;">ID</th>
-                        <th class="text-secondary" style="width: 25%;">Verification Picture</th>
-                        <th class="text-secondary" style="width: 25%;">Item Requested</th>
-                        <th class="text-secondary" style="width: 15%;">Status</th>
-                        <th class="text-secondary" style="width: 15%;">Handled By</th>
-                        <th class="text-secondary" style="width: 15%;">Requested At</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (count($my_requests) > 0): ?>
-                        <?php foreach ($my_requests as $req): ?>
-                            <tr>
-                                <td class="align-middle text-secondary">#<?php echo str_pad($req['id'], 4, '0', STR_PAD_LEFT); ?></td>
-                                <td class="align-middle">
-                                    <a href="../../uploads/inventory/requests/<?php echo htmlspecialchars($req['request_image']); ?>" target="_blank">
-                                        <img src="../../uploads/inventory/requests/<?php echo htmlspecialchars($req['request_image']); ?>" alt="Proof" class="img-thumbnail border-secondary bg-transparent" style="max-height: 50px; object-fit: cover;">
-                                    </a>
-                                </td>
-                                <td class="align-middle text-white fw-bold"><?php echo htmlspecialchars($req['item_requested']); ?></td>
-                                <td class="align-middle">
-                                    <?php if ($req['status'] === 'Pending'): ?>
-                                        <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-2 py-1">Pending</span>
-                                    <?php elseif ($req['status'] === 'Approved'): ?>
-                                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-1">Approved</span>
-                                    <?php elseif ($req['status'] === 'Completed'): ?>
-                                        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">Completed</span>
-                                    <?php else: ?>
-                                        <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1">Rejected</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="align-middle text-white small">
-                                    <?php echo $req['handled_by'] ? htmlspecialchars($req['handled_by']) : '<span class="text-secondary">Awaiting Admin</span>'; ?>
-                                </td>
-                                <td class="align-middle text-secondary small">
-                                    <?php echo date('M d, Y h:i A', strtotime($req['requested_at'])); ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="6" class="text-center text-secondary py-4">You have not submitted any requests yet.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+
 
     <!-- Quick Restock Cards -->
     <h4 class="text-white mb-3">Quick Restock Catalog</h4>
