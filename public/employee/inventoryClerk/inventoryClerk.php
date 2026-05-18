@@ -30,90 +30,30 @@ require_once '../../../includes/inventoryClerkHeader.php';
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Inventory Clerk Dashboard</h2>
     </div>
-    
+
     <div class="info-box mb-4">
         <i class="bi bi-info-circle"></i>
-        <span>Welcome, <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>! Your role is to update and monitor the exact quantity of supplies and items.</span>
+        <span>Welcome, <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>! Manage item counts and report shortages.</span>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
-        <div class="col">
-            <div class="stat-card h-100">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                        <span class="text-secondary small text-uppercase">Total items</span>
-                        <h3 class="text-white mb-0"><?php echo $total_items; ?></h3>
-                    </div>
-                    <i class="bi bi-box-seam fs-2 text-purple"></i>
-                </div>
-                <p class="text-secondary small mb-0">All inventory items tracked across stock status.</p>
+    <div class="row g-4 mt-2">
+        <div class="col-md-6">
+            <div class="card p-4 h-100">
+                <h5 class="text-white mb-3" style="font-size: 1.1rem; font-weight: 500;">Total Items</h5>
+                <h2 class="text-purple fw-bold mb-3" style="font-size: 2.5rem;"><?php echo (int)$total_items; ?></h2>
+                <span class="text-secondary small">All tracked inventory items</span>
             </div>
         </div>
-        <div class="col">
-            <div class="stat-card h-100">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                        <span class="text-secondary small text-uppercase">Good stock</span>
-                        <h3 class="text-white mb-0"><?php echo $good_items; ?></h3>
-                    </div>
-                    <i class="bi bi-check-circle-fill fs-2 text-success"></i>
-                </div>
-                <p class="text-secondary small mb-0">Items with healthy quantity levels.</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="stat-card h-100">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                        <span class="text-secondary small text-uppercase">Low stock</span>
-                        <h3 class="text-white mb-0"><?php echo $low_stock_items; ?></h3>
-                    </div>
-                    <i class="bi bi-exclamation-triangle-fill fs-2 text-warning"></i>
-                </div>
-                <p class="text-secondary small mb-0">Items that need restocking soon.</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="stat-card h-100">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                        <span class="text-secondary small text-uppercase">Out of stock</span>
-                        <h3 class="text-white mb-0"><?php echo $out_of_stock_items; ?></h3>
-                    </div>
-                    <i class="bi bi-slash-circle-fill fs-2 text-danger"></i>
-                </div>
-                <p class="text-secondary small mb-0">Items currently unavailable in stock.</p>
+        <div class="col-md-6">
+            <div class="card p-4 h-100">
+                <h5 class="text-white mb-3" style="font-size: 1.1rem; font-weight: 500;">Out of Stock</h5>
+                <h2 class="text-warning fw-bold mb-3" style="font-size: 2.5rem;"><?php echo (int)$out_of_stock_items; ?></h2>
+                <span class="text-secondary small">Items that need restocking</span>
             </div>
         </div>
     </div>
 
-    <div class="card p-4 mb-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h5 class="mb-0 text-white">Exact inventory items</h5>
-                <p class="text-secondary small mb-0">Current item names, quantities, and stock status.</p>
-            </div>
-            <span class="badge bg-white text-dark py-2 px-3"><?php echo count($inventory_items); ?> items</span>
-        </div>
-
-        <div class="row g-3">
-            <?php foreach ($inventory_items as $item): ?>
-                <div class="col-12 col-md-6 col-xl-4">
-                    <div class="card h-100 p-3 bg-dark border-secondary">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h6 class="text-white mb-1"><?php echo htmlspecialchars($item['name']); ?></h6>
-                            <?php if ($item['status'] === 'Out of Stock'): ?>
-                                <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25">Out of Stock</span>
-                            <?php elseif ($item['status'] === 'Low'): ?>
-                                <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25">Low</span>
-                            <?php else: ?>
-                                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">Good</span>
-                            <?php endif; ?>
-                        </div>
-                        <p class="text-secondary mb-1 small"><strong>Quantity:</strong> <?php echo (int)$item['quantity']; ?></p>
-                        <p class="text-secondary mb-0 small">Updated: <?php echo date('M d, Y', strtotime($item['updated_at'])); ?></p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
+    
+<?php
+require_once '../../../includes/employeeFooter.php';
+?>
