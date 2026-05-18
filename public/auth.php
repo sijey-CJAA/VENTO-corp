@@ -65,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         switch ($user['role']) {
                             case 'stock_holder': header("Location: employee/stockHolder/stockHolder.php"); break;
                             case 'inventory_clerk': header("Location: employee/inventoryClerk/inventoryClerk.php"); break;
-                            case 'it_encoder': header("Location: employee/itEncoder/itEncoder.php"); break;
                             case 'it_security': header("Location: employee/itSecurity/itSecurity.php"); break;
                             default: header("Location: employee/employee.php"); break;
                         }
@@ -88,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Define which table the role belongs to
         $admin_roles = ['operations_admin', 'it_admin', 'compensation_manager', 'inventory_admin'];
-        $employee_roles = ['stock_holder', 'inventory_clerk', 'it_encoder', 'it_security'];
+        $employee_roles = ['stock_holder', 'inventory_clerk', 'it_security'];
         
         $table = '';
         if (in_array($role, $admin_roles)) {
@@ -612,7 +611,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <optgroup label="Employee Roles">
                                         <option value="stock_holder">Stock Holder</option>
                                         <option value="inventory_clerk">Inventory Clerk</option>
-                                        <option value="it_encoder">IT Encoder</option>
                                         <option value="it_security">IT Security</option>
                                     </optgroup>
                                 </select>

@@ -158,16 +158,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                 Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="generate_payroll.php" class="nav-link <?php echo $current_page == 'generate_payroll.php' ? 'active' : ''; ?>">
-                                Generate Payroll
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="salary_adjustments.php" class="nav-link <?php echo $current_page == 'salary_adjustments.php' ? 'active' : ''; ?>">
-                                Review Salary Adjustments
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 

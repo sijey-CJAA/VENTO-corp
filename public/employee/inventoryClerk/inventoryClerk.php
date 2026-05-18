@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'employee' || $_S
 }
 
 require_once '../../../config/db.php';
-require_once '../../../includes/employeeHeader.php';
+require_once '../../../includes/inventoryClerkHeader.php';
 ?>
 
 <div class="dashboard">

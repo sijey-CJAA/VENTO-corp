@@ -241,28 +241,9 @@
         </div>
         
         <nav class="flex-grow-1 d-flex flex-column gap-2 px-3 py-4">
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-people fs-5"></i>
-                <span class="sidebar-text">HR Management</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-diagram-3 fs-5"></i>
-                <span class="sidebar-text">Operations</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-box-seam fs-5"></i>
-                <span class="sidebar-text">Inventory</span>
-            </a>
-            
-            <!-- Active State: IT Administration -->
             <a href="#" class="sidebar-link active">
-                <i class="bi bi-person-fill-lock fs-5"></i>
-                <span class="sidebar-text">IT Administration</span>
-            </a>
-
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-wallet2 fs-5"></i>
-                <span class="sidebar-text">Compensation</span>
+                <i class="bi bi-speedometer2 fs-5"></i>
+                <span class="sidebar-text">Dashboard</span>
             </a>
         </nav>
         

@@ -8,10 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin' || $_SESS
 
 require_once '../../../config/db.php';
 
-// Fetch employees under this admin
-$emp_stmt = $pdo->prepare("SELECT first_name, last_name, email, status, created_at FROM employees WHERE role = 'stock_holder'");
-$emp_stmt->execute();
-$employees = $emp_stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 require_once '../../../includes/operationManagerHeader.php';
 ?>
