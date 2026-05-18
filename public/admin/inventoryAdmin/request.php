@@ -45,15 +45,25 @@ if (isset($_SESSION['success_msg'])) {
     unset($_SESSION['success_msg']);
 }
 
-// Fetch all existing items for cards
-$inv_stmt = $pdo->prepare("SELECT id, name, quantity, status FROM inventory ORDER BY name ASC");
-$inv_stmt->execute();
-$inventory_items = $inv_stmt->fetchAll(PDO::FETCH_ASSOC);
+// Fetch all existing items for cards safely
+$inventory_items = [];
+try {
+    $inv_stmt = $pdo->prepare("SELECT id, name, quantity, status FROM inventory ORDER BY name ASC");
+    $inv_stmt->execute();
+    $inventory_items = $inv_stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    // Table missing
+}
 
-// Fetch my request history
-$req_stmt = $pdo->prepare("SELECT id, request_image, item_requested, requested_at, status, handled_by FROM requests ORDER BY requested_at DESC");
-$req_stmt->execute();
-$my_requests = $req_stmt->fetchAll(PDO::FETCH_ASSOC);
+// Fetch my request history safely
+$my_requests = [];
+try {
+    $req_stmt = $pdo->prepare("SELECT id, request_image, item_requested, requested_at, status, handled_by FROM requests ORDER BY requested_at DESC");
+    $req_stmt->execute();
+    $my_requests = $req_stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    // Table missing
+}
 
 require_once '../../../includes/inventoryAdminHeader.php';
 ?>

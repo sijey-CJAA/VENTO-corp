@@ -8,10 +8,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin' || $_SESS
 
 require_once '../../../config/db.php';
 
-// Fetch inventory items
-$inv_stmt = $pdo->prepare("SELECT id, name, quantity, status, last_verification_image, updated_by, updated_at FROM inventory ORDER BY name ASC");
-$inv_stmt->execute();
-$inventory_items = $inv_stmt->fetchAll(PDO::FETCH_ASSOC);
+// Fetch inventory items safely
+$inventory_items = [];
+try {
+    $inv_stmt = $pdo->prepare("SELECT id, name, quantity, status, last_verification_image, updated_by, updated_at FROM inventory ORDER BY name ASC");
+    $inv_stmt->execute();
+    $inventory_items = $inv_stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    // Ignore if table is missing
+}
 
 require_once '../../../includes/inventoryAdminHeader.php';
 ?>
