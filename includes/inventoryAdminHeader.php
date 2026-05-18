@@ -44,41 +44,33 @@ $current_page = basename($_SERVER['PHP_SELF']);
             left: 0; top: 0;
             height: 100vh;
             z-index: 1050;
-            background-color: var(--surface-dim);
+            background-color: #121212;
             border-right: 1px solid var(--outline-variant);
-            width: 72px;
+            width: 250px;
             transition: width 0.3s ease;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
-        .app-sidebar:hover { width: 280px; }
 
         .sidebar-brand {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 18px 16px;
+            gap: 10px;
+            padding: 24px 20px;
             overflow: hidden;
             white-space: nowrap;
-            min-height: 64px;
-        }
-        .sidebar-brand-icon {
-            min-width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #7c3aed, #9333ea);
         }
 
         .sidebar-link {
             display: flex;
             align-items: center;
             gap: 16px;
-            padding: 11px 16px;
+            padding: 12px 20px;
             color: var(--on-surface-variant);
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             transition: all 0.2s;
+            margin: 4px 16px;
             white-space: nowrap;
         }
         .sidebar-link:hover {
@@ -86,38 +78,32 @@ $current_page = basename($_SERVER['PHP_SELF']);
             color: var(--on-surface);
         }
         .sidebar-link.active {
-            border-left: 3px solid var(--primary);
-            background-color: rgba(68, 65, 115, 0.25);
-            color: var(--primary);
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
         }
 
         .sidebar-text {
-            opacity: 0;
-            transition: opacity 0.25s;
             font-size: 14px;
             font-weight: 500;
         }
-        .app-sidebar:hover .sidebar-text { opacity: 1; }
 
         .sidebar-section-label {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--on-surface-variant);
-            padding: 0 16px;
-            margin: 8px 0 4px;
+            padding: 0 20px;
+            margin: 16px 0 8px;
             white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.25s;
         }
-        .app-sidebar:hover .sidebar-section-label { opacity: 1; }
 
         /* ── Topbar ── */
         .app-topbar {
             position: fixed;
             top: 0; right: 0;
-            left: 72px;
+            left: 250px;
             height: 64px;
             z-index: 1040;
             display: flex;
@@ -191,9 +177,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         /* ── Main canvas ── */
         .app-main {
-            margin-left: 72px;
+            margin-left: 250px;
             margin-top: 64px;
-            padding: 28px;
+            padding: 40px;
             height: calc(100vh - 64px);
             overflow-y: auto;
             overflow-x: hidden;
@@ -260,13 +246,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
         @media (max-width: 768px) {
             .app-sidebar {
                 transform: translateX(-100%);
-                width: 280px;
+                width: 250px;
             }
             .app-sidebar.show {
                 transform: translateX(0);
             }
-            .app-sidebar.show .sidebar-text,
-            .app-sidebar.show .sidebar-section-label { opacity: 1; }
             .app-topbar { left: 0; padding: 0 16px; }
             .app-main { margin-left: 0; padding: 16px; }
             .topbar-actions { display: none !important; }
@@ -286,42 +270,37 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <aside class="app-sidebar" id="appSidebar">
         <!-- Brand -->
         <div class="sidebar-brand">
-            <div class="sidebar-brand-icon">
-                <i class="bi bi-box-seam text-white fs-5"></i>
-            </div>
-            <div class="d-flex flex-column sidebar-text lh-1">
-                <span class="font-display-lg fw-bold" style="font-size:17px;color:var(--primary)">VENTO CORP</span>
-                <span style="font-size:11px;color:var(--on-surface-variant)">Inventory Management</span>
+            <div class="d-flex flex-column lh-1">
+                <span class="font-display-lg fw-bold" style="font-size:22px;color:var(--primary);letter-spacing:1px;">VENTO</span>
+                <span style="font-size:11px;color:var(--on-surface-variant);letter-spacing:2px;margin-top:2px;">CORPORATION</span>
             </div>
         </div>
 
         <!-- Nav links -->
-        <nav class="flex-grow-1 d-flex flex-column px-3 py-2" style="gap:2px; overflow-y:auto;">
-            <div class="sidebar-section-label">Main</div>
+        <nav class="flex-grow-1 d-flex flex-column py-2" style="gap:2px; overflow-y:auto;">
+            <div class="sidebar-section-label">INVENTORY NAVIGATION</div>
 
             <a href="inventoryAdmin.php" class="sidebar-link <?php echo $current_page == 'inventoryAdmin.php' ? 'active' : ''; ?>">
-                <i class="bi bi-speedometer2 fs-5"></i>
                 <span class="sidebar-text">Dashboard</span>
             </a>
             <a href="inventory.php" class="sidebar-link <?php echo $current_page == 'inventory.php' ? 'active' : ''; ?>">
-                <i class="bi bi-box-seam fs-5"></i>
                 <span class="sidebar-text">Inventory</span>
             </a>
+            <a href="employees.php" class="sidebar-link <?php echo $current_page == 'employees.php' ? 'active' : ''; ?>">
+                <span class="sidebar-text">Employees</span>
+            </a>
             <a href="request.php" class="sidebar-link <?php echo $current_page == 'request.php' ? 'active' : ''; ?>">
-                <i class="bi bi-clipboard-data fs-5"></i>
                 <span class="sidebar-text">Requests</span>
             </a>
         </nav>
 
         <!-- Bottom -->
-        <div class="d-flex flex-column px-3 py-3 gap-1" style="border-top:1px solid var(--outline-variant)">
-            <a href="#" class="sidebar-link">
-                <i class="bi bi-question-circle fs-5"></i>
-                <span class="sidebar-text">Support</span>
-            </a>
-            <a href="/VENTO-corp/public/logout.php" class="sidebar-link" style="color:#f87171">
-                <i class="bi bi-box-arrow-right fs-5"></i>
-                <span class="sidebar-text">Logout</span>
+        <div class="d-flex flex-column px-4 py-4 mt-auto">
+            <div style="font-size: 13px; color: var(--on-surface-variant); margin-bottom: 12px;">
+                Role: <strong class="text-white">Inventory Admin</strong>
+            </div>
+            <a href="/VENTO-corp/public/logout.php" class="btn btn-outline-danger w-100" style="border-radius: 6px; color: #f87171; border-color: rgba(248, 113, 113, 0.5);">
+                Logout
             </a>
         </div>
     </aside>
