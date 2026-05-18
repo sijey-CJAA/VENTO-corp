@@ -1,198 +1,149 @@
 <?php
-// Operations Manager layout based on the IT Admin dashboard pattern.
+$current_page = basename($_SERVER['PHP_SELF'] ?? '');
 ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VENTO-corp Operations Manager</title>
+    <title>VENTO-corp Operations Manager Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
     <style>
-        :root {
-            --surface-dim: #131313;
-            --surface-container-highest: #353535;
-            --surface-container-low: #1b1b1b;
-            --surface-container: #1f1f1f;
-            --primary: #d2bbff;
-            --primary-container: #7c3aed;
-            --secondary: #c4c1fb;
-            --secondary-container: #444173;
-            --outline-variant: #4a4455;
-            --on-surface: #e2e2e2;
-            --on-surface-variant: #ccc3d8;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: var(--on-surface);
-            overflow: hidden;
+            background-color: #09090b;
+            color: #d4d4d8;
         }
 
-        .font-display-lg { font-family: 'Geist', sans-serif; }
-        .font-headline-sm { font-family: 'Geist', sans-serif; font-size: 20px; font-weight: 600; }
-
-        .app-sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            z-index: 1050;
-            background-color: var(--surface-dim);
-            border-right: 1px solid var(--outline-variant);
-            width: 85px;
-            transition: width 0.3s ease;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+        .operations-layout {
+            background-color: #09090b;
         }
 
-        .app-sidebar:hover {
-            width: 280px;
+        .sidebar {
+            background-color: #18181b !important;
+            border-right: 1px solid #27272a;
         }
 
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 12px 16px;
-            color: var(--on-surface-variant);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.2s;
-            white-space: nowrap;
+        .mobile-navbar {
+            background-color: #18181b !important;
+            border-bottom: 1px solid #27272a;
         }
 
-        .sidebar-link:hover {
-            background-color: var(--surface-container-highest);
-            color: var(--on-surface);
+        .text-gradient {
+            background: linear-gradient(to right, #9333ea, #7c3aed);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .sidebar-link.active {
-            border-left: 4px solid var(--primary);
-            background-color: rgba(68, 65, 115, 0.2);
-            color: var(--primary);
-        }
-
-        .sidebar-text {
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .sidebar-section-label {
-            color: var(--on-surface-variant);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 0.3s;
-            padding: 8px 16px 2px;
-            white-space: nowrap;
-        }
-
-        .app-sidebar:hover .sidebar-text,
-        .app-sidebar:hover .sidebar-section-label {
-            opacity: 1;
-        }
-
-        .app-topbar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 72px;
-            height: 64px;
-            z-index: 1040;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-            background-color: rgba(19, 19, 19, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--outline-variant);
-            transition: left 0.3s ease;
-        }
-
-        .search-input {
-            background-color: var(--surface-container-low);
-            border: 1px solid var(--outline-variant);
-            color: var(--on-surface);
-            padding: 6px 16px 6px 40px;
-            border-radius: 8px;
-            width: 250px;
-            transition: all 0.2s;
-        }
-
-        .search-input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 1px var(--primary);
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: var(--on-surface-variant);
-            background: transparent;
-            border: none;
-            transition: background 0.2s;
-        }
-
-        .icon-btn:hover {
-            background-color: var(--surface-container-low);
-            color: var(--on-surface);
-        }
-
-        .user-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px solid var(--outline-variant);
-            background: linear-gradient(135deg, #7c3aed, #9333ea);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .app-main {
-            margin-left: 72px;
-            margin-top: 64px;
-            padding: 24px;
-            height: calc(100vh - 64px);
-            overflow-y: auto;
-            overflow-x: hidden;
-            transition: margin-left 0.3s ease;
-        }
-
-        .card, .stat-card {
+        .card,
+        .stat-card {
             background-color: #18181b !important;
             border: 1px solid #27272a !important;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         }
 
-        .feature-card {
+        .nav-link {
+            color: #a1a1aa;
+            font-weight: 500;
+            padding-left: 1rem;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            background: #27272a;
+            border-radius: 6px;
+        }
+
+        .nav-link.active {
+            background: linear-gradient(to right, #9333ea, #7c3aed) !important;
+            color: #fff !important;
+            border-radius: 6px;
+        }
+
+        .text-purple { color: #a855f7 !important; }
+
+        .btn-primary-purple {
+            background: linear-gradient(to right, #9333ea, #7c3aed) !important;
+            color: white !important;
+            border: none !important;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary-purple:hover { opacity: 0.9; }
+
+        .btn-outline-dark {
             background-color: #18181b;
             border: 1px solid #27272a;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            color: #a1a1aa;
+        }
+
+        .btn-outline-dark:hover {
+            background-color: #27272a;
+            color: white;
+        }
+
+        .form-control,
+        .form-select {
+            background-color: #09090b;
+            border: 1px solid #27272a;
+            color: #d4d4d8;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #09090b;
+            border-color: #a855f7;
+            color: white;
+            box-shadow: 0 0 0 1px #a855f7;
+        }
+
+        .table { color: #d4d4d8; }
+
+        .table-dark {
+            --bs-table-bg: #18181b;
+            --bs-table-border-color: #27272a;
+        }
+
+        .table-hover tbody tr:hover {
+            color: white;
+            background-color: rgba(168, 85, 247, 0.05);
+        }
+
+        .nav-tabs {
+            border-bottom: 1px solid #27272a;
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .nav-tabs .nav-link {
+            flex: 1;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            padding: 1rem;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: white !important;
+            border-bottom: 2px solid #a855f7 !important;
+            background: transparent !important;
+        }
+
+        .nav-tabs .nav-link:hover:not(.active) {
+            color: #d4d4d8;
+            background: transparent;
         }
 
         .info-box {
@@ -213,196 +164,123 @@
             font-size: 1.1rem;
         }
 
-        .table { color: var(--on-surface); }
-
-        .table-dark {
-            --bs-table-bg: #18181b;
-            --bs-table-border-color: #27272a;
+        .stat-value {
+            font-size: 2.6rem;
+            line-height: 1;
+            font-weight: 700;
         }
 
-        .table-hover tbody tr:hover {
-            color: #fff;
-            background-color: rgba(168, 85, 247, 0.05);
-        }
-
-        .text-purple { color: #a855f7 !important; }
-
-        .btn-primary-purple {
-            background: linear-gradient(to right, #9333ea, #7c3aed) !important;
-            color: white !important;
-            border: none !important;
-            transition: opacity 0.2s;
-        }
-
-        .btn-primary-purple:hover {
-            opacity: 0.9;
-        }
-
-        .btn-outline-dark {
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            color: #a1a1aa;
-        }
-
-        .btn-outline-dark:hover {
-            background-color: #27272a;
-            color: white;
-        }
-
-        .bg-aura {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .aura-1 {
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 500px;
-            height: 500px;
-            background-color: rgba(210, 187, 255, 0.05);
-            border-radius: 50%;
-            filter: blur(120px);
-        }
-
-        .aura-2 {
-            position: absolute;
-            bottom: -10%;
-            left: 5%;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(196, 193, 251, 0.05);
-            border-radius: 50%;
-            filter: blur(100px);
-        }
-
-        @media (max-width: 768px) {
-            .app-sidebar {
-                transform: translateX(-100%);
-                width: 280px;
+        @media (min-width: 992px) {
+            body {
+                overflow: hidden;
             }
 
-            .app-sidebar.show {
-                transform: translateX(0);
+            .operations-layout {
+                height: 100vh;
+                min-height: 100vh;
+                overflow: hidden;
             }
 
-            .app-sidebar.show .sidebar-text,
-            .app-sidebar.show .sidebar-section-label {
-                opacity: 1;
+            .operations-sidebar {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                max-height: 100vh;
+                overflow: hidden;
             }
 
-            .app-topbar {
-                left: 0;
-                padding: 0 16px;
+            .operations-sidebar .offcanvas-body {
+                display: flex;
+                overflow: hidden;
             }
 
-            .app-main {
-                margin-left: 0;
-                padding: 16px;
+            .operations-content-wrapper {
+                height: 100vh;
+                min-height: 0 !important;
+                overflow: hidden !important;
             }
 
-            .search-input {
-                width: 180px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .app-sidebar:hover ~ .app-topbar {
-                left: 280px;
-            }
-
-            .app-sidebar:hover ~ .flex-grow-1 .app-main {
-                margin-left: 280px;
+            .operations-content-wrapper > main {
+                min-height: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
             }
         }
     </style>
 </head>
 <body>
     <?php if (isset($_SESSION['user_id'])): ?>
-    <div class="d-flex min-vh-100">
-        <div class="bg-aura">
-            <div class="aura-1"></div>
-            <div class="aura-2"></div>
-        </div>
+    <div class="operations-layout d-flex min-vh-100 flex-column flex-lg-row">
 
-        <aside class="app-sidebar">
-            <div class="d-flex align-items-center gap-3 p-4" style="overflow: hidden; white-space: nowrap;">
-                <div class="d-flex align-items-center justify-content-center rounded" style="min-width: 40px; height: 40px; background-color: var(--primary-container);">
-                    <i class="bi bi-diagram-3 text-white fs-5"></i>
-                </div>
-                <div class="d-flex flex-column sidebar-text">
-                    <span class="font-display-lg fw-bold" style="font-size: 18px; color: var(--primary);">VENTO CORP</span>
-                    <span style="font-size: 12px; color: var(--on-surface-variant);">Operations Manager</span>
-                </div>
-            </div>
-
-            <nav class="flex-grow-1 d-flex flex-column gap-2 px-3 py-4">
-                <div class="sidebar-section-label">Operations</div>
-                <a href="operations.php" class="sidebar-link <?php echo $current_page == 'operations.php' ? 'active' : ''; ?>">
-                    <i class="bi bi-speedometer2 fs-5"></i>
-                    <span class="sidebar-text">Dashboard</span>
+        <!-- Mobile Navbar (Hidden on PC) -->
+        <nav class="navbar navbar-dark mobile-navbar d-lg-none px-3 py-3">
+            <div class="container-fluid">
+                <a class="navbar-brand m-0 d-flex flex-column lh-1 text-decoration-none" href="operations.php">
+                    <span class="fs-3 fw-bolder text-gradient mb-1">VENTO</span>
+                    <span class="text-secondary fw-bold text-uppercase" style="font-size: 0.6rem; letter-spacing: 2px;">Corporation</span>
                 </a>
-                <a href="employees.php" class="sidebar-link <?php echo $current_page == 'employees.php' ? 'active' : ''; ?>">
-                    <i class="bi bi-people fs-5"></i>
-                    <span class="sidebar-text">Employees</span>
-                </a>
-                <a href="request.php" class="sidebar-link <?php echo $current_page == 'request.php' ? 'active' : ''; ?>">
-                    <i class="bi bi-clipboard-data fs-5"></i>
-                    <span class="sidebar-text">Requests</span>
-                </a>
-                <a href="deliveries.php" class="sidebar-link <?php echo $current_page == 'deliveries.php' ? 'active' : ''; ?>">
-                    <i class="bi bi-truck fs-5"></i>
-                    <span class="sidebar-text">Deliveries</span>
-                </a>
-            </nav>
-
-            <div class="d-flex flex-column gap-2 px-3 py-4 border-top" style="border-color: var(--outline-variant) !important;">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-question-circle fs-5"></i>
-                    <span class="sidebar-text">Support</span>
-                </a>
-                <a href="/VENTO-corp/public/logout.php" class="sidebar-link text-danger">
-                    <i class="bi bi-box-arrow-right fs-5"></i>
-                    <span class="sidebar-text">Logout</span>
-                </a>
-            </div>
-        </aside>
-
-        <header class="app-topbar">
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-link text-white d-md-none p-0 me-2" onclick="document.querySelector('.app-sidebar').classList.toggle('show')">
-                    <i class="bi bi-list fs-3"></i>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <h1 class="font-headline-sm text-white mb-0 d-none d-lg-block">Operations Manager</h1>
-                <div class="position-relative d-none d-sm-block">
-                    <i class="bi bi-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%); color: var(--on-surface-variant);"></i>
-                    <input class="search-input" placeholder="Search operations..." type="text">
-                </div>
             </div>
-            <div class="d-flex align-items-center gap-3">
-                <div class="d-flex align-items-center border-end pe-3 me-1 d-none d-md-flex" style="border-color: var(--outline-variant) !important;">
-                    <button class="icon-btn" type="button"><i class="bi bi-bell fs-5"></i></button>
-                    <button class="icon-btn" type="button"><i class="bi bi-clock-history fs-5"></i></button>
-                    <button class="icon-btn" type="button"><i class="bi bi-chat-left-text fs-5"></i></button>
+        </nav>
+
+        <!-- Sidebar / Offcanvas (Sidebar on PC, Offcanvas on Mobile) -->
+        <div class="offcanvas-lg offcanvas-start sidebar operations-sidebar flex-column flex-shrink-0 p-3" tabindex="-1" id="sidebarMenu" style="width: 280px;">
+            <div class="offcanvas-header d-lg-none border-bottom border-secondary mb-3 pb-3">
+                <div class="offcanvas-title d-flex flex-column lh-1">
+                    <span class="fs-3 fw-bolder text-gradient mb-1">VENTO</span>
+                    <span class="text-secondary fw-bold text-uppercase" style="font-size: 0.6rem; letter-spacing: 2px;">Corporation</span>
                 </div>
-                <div class="small text-secondary d-none d-xl-block">
+                <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body d-flex flex-column h-100 px-0 px-lg-2">
+                <a href="operations.php" class="d-none d-lg-flex flex-column align-items-start lh-1 mb-4 text-decoration-none pt-2">
+                    <span class="fs-2 fw-bolder text-gradient mb-1">VENTO</span>
+                    <span class="text-secondary fw-bold text-uppercase" style="font-size: 0.7rem; letter-spacing: 3px;">Corporation</span>
+                </a>
+
+                <div class="mb-auto">
+                    <span class="d-block text-secondary small text-uppercase fw-bold mb-3 px-3">Operations Manager Navigation</span>
+                    <ul class="nav flex-column mb-auto gap-1">
+                        <li class="nav-item">
+                            <a href="operations.php" class="nav-link <?php echo $current_page == 'operations.php' ? 'active' : ''; ?>">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="employees.php" class="nav-link <?php echo $current_page == 'employees.php' ? 'active' : ''; ?>">
+                                Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="request.php" class="nav-link <?php echo $current_page == 'request.php' || $current_page == 'assignTask.php' ? 'active' : ''; ?>">
+                                Requests
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="deliveries.php" class="nav-link <?php echo $current_page == 'deliveries.php' ? 'active' : ''; ?>">
+                                Deliveries
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <hr class="border-secondary mt-auto mb-3">
+                <div class="small text-secondary mb-3 px-3">
                     Role: <strong class="text-white"><?php echo htmlspecialchars(ucwords(str_replace('_', ' ', $_SESSION['role'] ?? $_SESSION['user_type']))); ?></strong>
                 </div>
-                <div class="user-avatar" title="<?php echo htmlspecialchars($_SESSION['first_name'] ?? 'User'); ?>">
-                    <?php echo strtoupper(substr($_SESSION['first_name'] ?? 'U', 0, 1)); ?>
+                <div class="px-2">
+                    <a class="btn btn-outline-danger w-100" href="/VENTO-corp/public/logout.php">Logout</a>
                 </div>
             </div>
-        </header>
+        </div>
 
-        <div class="flex-grow-1 d-flex flex-column min-vh-100 w-100" style="overflow-x: hidden;">
-            <main class="app-main position-relative" style="z-index: 10;">
+        <!-- Main Content Area Wrapper -->
+        <div class="operations-content-wrapper flex-grow-1 d-flex flex-column min-vh-100 w-100" style="overflow-x: hidden;">
+            <main class="container-fluid flex-grow-1 p-4 p-md-5">
     <?php else: ?>
-    <!-- Basic layout if not logged in -->
+    <!-- If not logged in, basic layout -->
     <main class="container-fluid flex-grow-1 p-4">
     <?php endif; ?>
-
