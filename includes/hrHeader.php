@@ -158,6 +158,21 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                 Dashboard
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="applications.php" class="nav-link <?php echo $current_page == 'applications.php' ? 'active' : ''; ?>">
+                                Applications
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="employees.php" class="nav-link <?php echo $current_page == 'employees.php' ? 'active' : ''; ?>">
+                                Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="rejections.php" class="nav-link <?php echo $current_page == 'rejections.php' ? 'active' : ''; ?>">
+                                Rejections
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 

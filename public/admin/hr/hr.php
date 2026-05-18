@@ -30,6 +30,15 @@ $emp_pending_count = $emp_pending_stmt->fetchColumn();
 
 $total_pending = $admin_pending_count + $emp_pending_count;
 
+// Get Rejected Applications (Rejected Admins + Rejected Employees)
+$admin_rejected_stmt = $pdo->query("SELECT COUNT(*) FROM admins WHERE status = 'rejected'");
+$admin_rejected_count = $admin_rejected_stmt->fetchColumn();
+
+$emp_rejected_stmt = $pdo->query("SELECT COUNT(*) FROM employees WHERE status = 'rejected'");
+$emp_rejected_count = $emp_rejected_stmt->fetchColumn();
+
+$total_rejected = $admin_rejected_count + $emp_rejected_count;
+
 require_once '../../../includes/hrHeader.php';
 ?>
 
@@ -45,23 +54,29 @@ require_once '../../../includes/hrHeader.php';
     </div>
     
     <div class="stats-grid mt-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-        <div class="stat-card p-4">
-            <h3 class="h5 text-white mb-2">Total Employees</h3>
-            <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #a855f7;"><?php echo $total_active; ?></p>
-            <p class="small text-muted mb-0">Active across all departments</p>
-        </div>
+        <a href="applications.php" class="text-decoration-none">
+            <div class="stat-card p-4 h-100" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                <h3 class="h5 text-white mb-2">Pending Applications</h3>
+                <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #f59e0b;"><?php echo $total_pending; ?></p>
+                <p class="small text-muted mb-0">Awaiting review</p>
+            </div>
+        </a>
         
-        <div class="stat-card p-4">
-            <h3 class="h5 text-white mb-2">Pending Applications</h3>
-            <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #f59e0b;"><?php echo $total_pending; ?></p>
-            <p class="small text-muted mb-0">Awaiting review</p>
-        </div>
+        <a href="employees.php" class="text-decoration-none">
+            <div class="stat-card p-4 h-100" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                <h3 class="h5 text-white mb-2">Total Employees</h3>
+                <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #a855f7;"><?php echo $total_active; ?></p>
+                <p class="small text-muted mb-0">Active personnel</p>
+            </div>
+        </a>
         
-        <div class="stat-card p-4">
-            <h3 class="h5 text-white mb-2">Promotions Review</h3>
-            <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #10b981;">0</p>
-            <p class="small text-muted mb-0">Pending approval</p>
-        </div>
+        <a href="rejections.php" class="text-decoration-none">
+            <div class="stat-card p-4 h-100" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                <h3 class="h5 text-white mb-2">Rejections</h3>
+                <p class="stat-value" style="font-size: 2rem; font-weight: bold; color: #ef4444;"><?php echo $total_rejected; ?></p>
+                <p class="small text-muted mb-0">Rejected applications</p>
+            </div>
+        </a>
     </div>
 
 
